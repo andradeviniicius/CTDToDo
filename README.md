@@ -4,7 +4,7 @@ Repositorio criado para realizacao do Checkpoint 2 da matéria de FrontEnd 2
 
 <p>Edimilson Sousa<br>
 Cristian Daniel Fernandes<br>
-Vinicius andrada<br>
+Vinicius Andrade<br>
 Yasmin Khalaf<br>
 Lucas Gabriel<br>
 Thaisa Sicco
