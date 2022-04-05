@@ -6,7 +6,7 @@ const form = selectId('create-conta')
 const errorList = selectId('error-list-container')
 const errorListUl = selectId('error-list')
 const inputNome = selectId('input-nome')
-const inputApelido = selectId('input-apelido')
+const inputSobrenome = selectId('input-sobrenome')
 const inputEmail = selectId('input-email')
 const inputSenha = selectId('input-senha')
 const inputRepetirSenha = selectId('input-repetir-senha')
@@ -15,11 +15,13 @@ const btnSubmite = selectId('btn-criar-conta')
 let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 let campoNomeNormalizado;
-let campoApelidoNormalizado;
-let campoEmailNormalizado;;
+let campoSobrenomeNormalizado;
+let campoEmailNormalizado;
 let campoSenhaNormalizado;
 
 form.addEventListener('submit', (event) => {
+  event.preventDefault()
+
   errorListUl.innerHTML = '';
 
   if(inputNome.value === ''){
@@ -29,12 +31,12 @@ form.addEventListener('submit', (event) => {
     campoNomeNormalizado = converteValorRecebidoParaMinusculo(campoNomeNormalizado)
   }
 
-  if(inputApelido.value === ''){
+  if(inputSobrenome.value === ''){
     errorListUl.innerHTML += '<li>Campo <b>apelido</b> não preenchido</li>';
   }
   else{
-    campoApelidoNormalizado = retiraEspacosDeUmValor(inputApelido.value)
-    campoApelidoNormalizado = converteValorRecebidoParaMinusculo(campoApelidoNormalizado)
+    campoSobrenomeNormalizado = retiraEspacosDeUmValor(inputSobrenome.value)
+    campoSobrenomeNormalizado = converteValorRecebidoParaMinusculo(campoSobrenomeNormalizado)
   }
 
   if(inputEmail.value != '' && regex.test(inputEmail.value)){
@@ -60,9 +62,41 @@ form.addEventListener('submit', (event) => {
     event.preventDefault()
 
     errorList.hidden = '';
-  }else{
-    window.location = 'tarefas.html'
-    
   }
 
+
+
+  // Consumindo a API
+  let dadosUsuario = {
+    firstName: campoNomeNormalizado,
+    lastName: campoSobrenomeNormalizado,
+    email: campoEmailNormalizado,
+    password: campoSenhaNormalizado
+  }
+  
+  console.log(dadosUsuario)
+
+  let dadosUsuarioJson =  JSON.stringify(dadosUsuario)
+
+  // Acesso a API Create users
+  const url = "https://ctd-todo-api.herokuapp.com/v1/users"
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: dadosUsuarioJson
+  })
+  .then(response => {
+    return response.json()
+  })
+  .then(response => {
+    console.log(response)
+  })
+  .catch((error) => {
+    console.log(error)
+  })
 })
+
+
