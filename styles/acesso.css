@@ -59,6 +59,8 @@ label {
 }
 
 button {
+  display: flex;
+  position: relative;
   padding: .5em 3em;
   background-color: var(--primary);
   color: white;
@@ -70,6 +72,47 @@ button {
 button:disabled {
   background-color: #676767;
 }
+
+/* button loading */
+/* .button--loading {
+
+} */
+.button--text {
+  display: none;
+}
+.button--loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 5px;
+  left: 5px;
+  right: 0;
+  bottom: 0;
+  /* margin: auto; */
+  border: 4px solid transparent;
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s linear infinite;
+}
+@keyframes button-loading-spinner {
+  0% {
+    transform: rotate(0deg);
+    border-top-color: #1DA760;
+    transition: all 0.5s;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-top-color: #DE3E35;
+    transition: all 0.5s;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-top-color: #fff;
+    transition: all 0.5s;
+  }
+}
+
 
 .form-header {
   color: grey;
@@ -89,6 +132,7 @@ button:disabled {
 .left img{
   width:60%;
 }
+
 .right{
   width: 50%;
   display: flex;
