@@ -13,11 +13,11 @@
 
 <body>
   <div class="left">
-    <img src="./assets/pessoa-login.png" alt="">
+    <img src="./assets/pessoa-login.png" alt="">    
   </div>
 
   <div class="right">
-    <form>
+    <form id="form-login">
       <div class="form-header">
         <p>To-Do App</p>
       </div>
@@ -33,6 +33,10 @@
         <small id="inputSenhaValidacao"></small>
       </label>
 
+      <div class="error-api">
+        <smal id="message-erro-api"></smal>
+      </div>
+
       <button id="botaoAcessar" type="submit">Acessar</button>
 
     </form>
@@ -42,7 +46,7 @@
   </div>
 
   <!-- ---------------------- lógica aplicada no login ----------------------- -->
-  <script src="./scripts/validacoes/utils.js"></script>
-  <script src="./scripts/login/login.js"></script>
+  <script src="./scripts/validations/utils.js"></script>
+  <script src="./scripts/login_user/login.js"></script>
 </body>
 </html>
