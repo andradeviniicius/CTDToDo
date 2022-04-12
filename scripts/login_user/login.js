@@ -82,12 +82,14 @@ campoSenhaLogin.addEventListener('blur', ()=> {
 
 
 
-botaoAcessar.addEventListener('click',(event)=>{
+botaoAcessar.addEventListener('click',(event) => {
 		
-	if (emailEValido == true && senhaEValido == true) {
+	if (validacaoTelaDeLogin()) {
 		event.preventDefault();
 		
-		campoEmailLoginNormalizado = converteValorRecebidoParaMinusculo(campoEmailLogin.value);
+		campoEmailLoginNormalizado = retiraEspacosDeUmValor(campoEmailLogin.value);
+		campoSenhaLoginNormalizado = retiraEspacosDeUmValor(campoSenhaLogin.value);
+		campoEmailLoginNormalizado = converteValorRecebidoParaMinusculo(campoEmailLoginNormalizado);
 
 		//Populando o objeto com as informações normalizadas
 		usuarioObjeto.email = campoEmailLoginNormalizado;
@@ -120,6 +122,9 @@ botaoAcessar.addEventListener('click',(event)=>{
 			if(error.status == 404) {
 				mensageErroApi.innerText = "Usuário não existe"
 				mensageErroApi.style.color = "#EE1729EC"
+				setTimeout(() => {
+					mensageErroApi.innerText = ""
+				}, 4000)
 			}else{
 				loginErro(error)
 			}
