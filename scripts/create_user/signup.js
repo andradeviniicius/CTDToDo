@@ -23,12 +23,7 @@ let campoSenhaNormalizado;
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  //spinner loading
-  btnSubmite.classList.add('button--loading')
-  btnSubmite.innerText = 'Criando usuário';
-  // btnText.style.display = "block";
-  errorListUl.innerHTML = '';
-
+  
   if(inputNome.value === ''){
     errorListUl.innerHTML += '<li>Campo <b>nome</b> não preenchido</li>';
   }else{
@@ -66,6 +61,14 @@ form.addEventListener('submit', (event) => {
   if(errorListUl.querySelectorAll('li').length > 0) {
     event.preventDefault()
     errorList.hidden = '';
+  }
+  
+  if(inputNome.value && inputSobrenome.value && inputEmail.value && inputSenha.value && inputRepetirSenha != '' ) {
+    //spinner loading
+    btnSubmite.classList.add('button--loading')
+    btnSubmite.innerText = 'Criando usuário';
+    // btnText.style.display = "block";
+    errorListUl.innerHTML = '';
   }
 
   // Consumindo a API
@@ -118,7 +121,7 @@ function cadastroSucesso(jsonRecebido) {
   console.log(jsonRecebido)
   // alert('Usuário cadastrado com sucesso')
   setTimeout(function(){
-    btnSubmite.innerText += `✅`;
+    btnSubmite.innerText += ` ✅`;
 
   }, 2000)
   setTimeout(function(){
