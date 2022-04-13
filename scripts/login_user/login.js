@@ -1,4 +1,3 @@
-//Capturando as informações
 let campoEmailLogin = document.getElementById('inputEmail');
 let campoSenhaLogin = document.getElementById('inputPassword');
 let botaoAcessar = document.getElementById('botaoAcessar');
@@ -6,20 +5,67 @@ let mensageErroApi = document.getElementById('message-erro-api')
 
 let campoEmailLoginNormalizado;
 let campoSenhaLoginNormalizado;
-//variável p/ validar email digitado corretamente @ 
 let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-//variável de controle da validação
 let emailEValido = false;
 let senhaEValido = false;
 
-//Definindo objeto
 const usuarioObjeto = {
 	email: "",
 	password: "",
 }
 
-botaoAcessar.addEventListener('click', function(event){
+function validacaoTelaDeLogin () {
+	if (emailEValido && senhaEValido) {
+		botaoAcessar.removeAttribute('disabled')
+		botaoAcessar.innerText = "Acessar";
+		return true;
+	} else {
+		botaoAcessar.setAttribute('disabled', true);
+		botaoAcessar.innerText = "Bloqueado";
+		return false;
+	}
+}
+
+campoEmailLogin.addEventListener('blur', function() {
+	let mensagemErroEmail = document.getElementById('mensagemErroEmail');
+
+	if (campoEmailLogin.value != "" && regex.test(campoEmailLogin.value)) {
+		mensagemErroEmail.innerText = ""
+		campoEmailLogin.style.border = ``
+		emailEValido = true;
+
+	} else {
+		mensagemErroEmail.innerText = "E-mail inválido";
+		mensagemErroEmail.style.color = "#EE1729EC"
+		mensagemErroEmail.style.fontSize = "9pt"
+		mensagemErroEmail.style.fontWeight = "bold"
+		campoEmailLogin.style.border = `1px solid #EE1729EC`
+		emailEValido = false;
+	}
+
+	validacaoTelaDeLogin();
+});
+
+campoSenhaLogin.addEventListener('blur', function() {
+	let mensagemErroSenha = document.getElementById('mensagemErroSenha')
+
+	if(campoSenhaLogin.value != '') {
+		mensagemErroSenha.innerText = ""
+		campoSenhaLogin.style.border = ``
+		senhaEValido = true;
+	}else {
+		mensagemErroSenha.innerText = "A senha deve ser preenchida"
+		mensagemErroSenha.style.color = "#EE1729EC"
+		mensagemErroSenha.style.fontSize = "9pt"
+		mensagemErroSenha.style.fontWeight = "bold"
+		campoSenhaLogin.style.border = `1px solid #EE1729EC`
+		senhaEValido = false;
+	}
+	validacaoTelaDeLogin();
+})
+
+botaoAcessar.addEventListener('click', (event) => {
 
 	if (validacaoTelaDeLogin()) {
 		event.preventDefault();
@@ -47,7 +93,6 @@ botaoAcessar.addEventListener('click', function(event){
 		.then(response => {
 			if(response.status == 201) {
 				return response.json()
-
 			}
 			//Se status diferente diferente, cai no catch
 			throw response;
@@ -66,99 +111,23 @@ botaoAcessar.addEventListener('click', function(event){
 				loginErro(error)
 			}
 		})
-		
 	}else {
 		event.preventDefault(); 
 		alert("Ambos os campos devem ser informados")
 	}
-
 });
 
-
-//Validando o campo de Email
-campoEmailLogin.addEventListener('blur', function() {
-	//Captura o elemento "small"
-	let inputEmailValidacao = document.getElementById('inputEmailValidacao');
-
-	//Se o campo estiver com algum valor...
-	if (campoEmailLogin.value != "" && regex.test(campoEmailLogin.value)) {
-		inputEmailValidacao.innerText = ""
-		campoEmailLogin.style.border = ``
-		emailEValido = true;
-
-	//Se o campo estiver sem nenhum valor...
-	} else {
-		inputEmailValidacao.innerText = "E-mail inválido";
-		inputEmailValidacao.style.color = "#EE1729EC"
-		inputEmailValidacao.style.fontSize = "9pt"
-		inputEmailValidacao.style.fontWeight = "bold"
-		campoEmailLogin.style.border = `1px solid #EE1729EC`
-		emailEValido = false;
-	}
-
-	//Chama a função de validar, para "atualizar" o status da validação principal da tela de login
-	validacaoTelaDeLogin();
-});
-
-//Validando o campo de Senha
-campoSenhaLogin.addEventListener('blur', function() {
-	let inputSenhaValidacao = document.getElementById('inputSenhaValidacao')
-
-	if(campoSenhaLogin.value != '') {
-		inputSenhaValidacao.innerText = ""
-		campoSenhaLogin.style.border = ``
-		senhaEValido = true;
-	}else {
-		inputSenhaValidacao.innerText = "A senha deve ser preenchida"
-		inputSenhaValidacao.style.color = "#EE1729EC"
-		inputSenhaValidacao.style.fontSize = "9pt"
-		inputSenhaValidacao.style.fontWeight = "bold"
-		campoSenhaLogin.style.border = `1px solid #EE1729EC`
-		senhaEValido = false;
-	}
-	validacaoTelaDeLogin();
-})
-
-function validacaoTelaDeLogin () {
-	if (emailEValido && senhaEValido) {
-		botaoAcessar.removeAttribute('disabled')
-		botaoAcessar.innerText = "Acessar";
-		return true;
-	} else {
-		botaoAcessar.setAttribute('disabled', true);
-		botaoAcessar.innerText = "Bloqueado";
-		return false;
-	}
-}
-
-
-//Funçao limpa dados do input
-function clearInput() {
-  document.getElementById('form-login').reset();
-}
-
-
-//function caso tenha sucesso no login
 function loginSucesso(jsonRecebido) {
 	console.log(jsonRecebido)
-
-	//Salvando na SessionStorage
 	sessionStorage.setItem('jwt', JSON.stringify(jsonRecebido))
-
-	alert("Usuário logado com sucesso!")
-
-	clearInput()
-
+	window.location.href = "tarefas.html";
+	document.getElementById('form-login').reset();
 }
 
-//function caso tenha erro no login
 function loginErro(statusRecebido) {
-	//Adiciona o erro na tela 
   console.log(statusRecebido)
-	
-	mensageErroApi.innerText = "Erro ao logar!, Digite email e ou senha corretamente!"
+	mensageErroApi.innerText = "Erro ao logar!, confira os dados!"
 	mensageErroApi.style.color = "#EE1729EC"
-
 }
 
 
