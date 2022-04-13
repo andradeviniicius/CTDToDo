@@ -13,7 +13,6 @@ const inputRepetirSenha = selectId('input-repetir-senha')
 const btnSubmite = selectId('btn-criar-conta')
 const btnText = document.querySelector('.button--text')
 
-
 let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 let campoNomeNormalizado;
@@ -21,14 +20,7 @@ let campoSobrenomeNormalizado;
 let campoEmailNormalizado;
 let campoSenhaNormalizado;
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  //spinner loading
-  btnSubmite.classList.add('button--loading')
-  btnSubmite.innerText = 'Criando usuário';
-  // btnText.style.display = "block";
-  errorListUl.innerHTML = '';
-
+function validacaoDadosInput() {
   if(inputNome.value === ''){
     errorListUl.innerHTML += '<li>Campo <b>nome</b> não preenchido</li>';
   }else{
@@ -68,6 +60,19 @@ form.addEventListener('submit', (event) => {
     errorList.hidden = '';
   }
 
+  if(inputNome.value && inputSobrenome.value && inputEmail.value && inputSenha.value && inputRepetirSenha != '' ) {
+    //spinner loading
+    btnSubmite.classList.add('button--loading')
+    btnSubmite.innerText = 'Criando usuário';
+    // btnText.style.display = "block";
+    errorListUl.innerHTML = '';
+  }
+}
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  validacaoDadosInput()
+  
   // Consumindo a API
   let dadosUsuario = {
     firstName: campoNomeNormalizado,
@@ -118,7 +123,7 @@ function cadastroSucesso(jsonRecebido) {
   console.log(jsonRecebido)
   // alert('Usuário cadastrado com sucesso')
   setTimeout(function(){
-    btnSubmite.innerText += `✅`;
+    btnSubmite.innerText += ` ✅`;
 
   }, 2000)
   setTimeout(function(){

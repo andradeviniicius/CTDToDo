@@ -15,6 +15,17 @@ const usuarioObjeto = {
 	password: "",
 }
 
+/*	Abaixo temos dois listeners para os campos E-mail e senha 
+
+	Quando o usuario tirar o foco do input referenciado o sistema:
+		1- Valida as informacoes que o usuario colocou
+			-caso passe os testes o campo de erro fica vazio e as variaveis "xxxxEValido" se tornam true"
+			-caso não passse o campo de erro se mostra e as variaveis "xxxxEValido" se tornam false"
+		2- Por fim Chama a funcao validacaoTelaDeLogin que confere essas duas variaveis
+			Caso seja verdadeiro ele libera o botao de acessar
+			Caso seja falso ele bloqueia o botao de acessar
+*/
+
 function validacaoTelaDeLogin () {
 	if (emailEValido && senhaEValido) {
 		botaoAcessar.removeAttribute('disabled')
@@ -27,14 +38,16 @@ function validacaoTelaDeLogin () {
 	}
 }
 
-campoEmailLogin.addEventListener('blur', function() {
+campoEmailLogin.addEventListener('blur', ()=> {
 	let mensagemErroEmail = document.getElementById('mensagemErroEmail');
+	mensageErroApi.innerText = ""
 
+	
 	if (campoEmailLogin.value != "" && regex.test(campoEmailLogin.value)) {
 		mensagemErroEmail.innerText = ""
 		campoEmailLogin.style.border = ``
 		emailEValido = true;
-
+		
 	} else {
 		mensagemErroEmail.innerText = "E-mail inválido";
 		mensagemErroEmail.style.color = "#EE1729EC"
@@ -47,8 +60,10 @@ campoEmailLogin.addEventListener('blur', function() {
 	validacaoTelaDeLogin();
 });
 
-campoSenhaLogin.addEventListener('blur', function() {
+campoSenhaLogin.addEventListener('blur', ()=> {
 	let mensagemErroSenha = document.getElementById('mensagemErroSenha')
+	mensageErroApi.innerText = ""
+
 
 	if(campoSenhaLogin.value != '') {
 		mensagemErroSenha.innerText = ""
@@ -65,11 +80,12 @@ campoSenhaLogin.addEventListener('blur', function() {
 	validacaoTelaDeLogin();
 })
 
-botaoAcessar.addEventListener('click', (event) => {
 
+
+botaoAcessar.addEventListener('click',(event) => {
 	if (validacaoTelaDeLogin()) {
 		event.preventDefault();
-		//Normalizando as informações
+		
 		campoEmailLoginNormalizado = retiraEspacosDeUmValor(campoEmailLogin.value);
 		campoSenhaLoginNormalizado = retiraEspacosDeUmValor(campoSenhaLogin.value);
 		campoEmailLoginNormalizado = converteValorRecebidoParaMinusculo(campoEmailLoginNormalizado);
@@ -85,14 +101,15 @@ botaoAcessar.addEventListener('click', (event) => {
 
 		fetch(url, {
 			method: 'POST',
-    	headers: {
-      	'Content-Type': 'application/json'
-    	},
+		headers: {
+		  'Content-Type': 'application/json'
+		},
 			body: usuarioObjetoJson
 		})
 		.then(response => {
 			if(response.status == 201) {
 				return response.json()
+
 			}
 			//Se status diferente diferente, cai no catch
 			throw response;
@@ -106,11 +123,12 @@ botaoAcessar.addEventListener('click', (event) => {
 				mensageErroApi.style.color = "#EE1729EC"
 				setTimeout(() => {
 					mensageErroApi.innerText = ""
-				},4000)
+				}, 4000)
 			}else{
 				loginErro(error)
 			}
 		})
+		
 	}else {
 		event.preventDefault(); 
 		alert("Ambos os campos devem ser informados")
@@ -120,14 +138,12 @@ botaoAcessar.addEventListener('click', (event) => {
 function loginSucesso(jsonRecebido) {
 	console.log(jsonRecebido)
 	sessionStorage.setItem('jwt', JSON.stringify(jsonRecebido))
-	window.location.href = "tarefas.html";
+	window.location.href = "tarefas.html"
 	document.getElementById('form-login').reset();
 }
 
 function loginErro(statusRecebido) {
-  console.log(statusRecebido)
+	console.log(statusRecebido)
 	mensageErroApi.innerText = "Erro ao logar!, confira os dados!"
 	mensageErroApi.style.color = "#EE1729EC"
 }
-
-
