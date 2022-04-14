@@ -13,7 +13,6 @@ const inputRepetirSenha = selectId('input-repetir-senha')
 const btnSubmite = selectId('btn-criar-conta')
 const btnText = document.querySelector('.button--text')
 
-
 let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 let campoNomeNormalizado;
