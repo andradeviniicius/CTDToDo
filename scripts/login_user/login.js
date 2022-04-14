@@ -83,7 +83,6 @@ campoSenhaLogin.addEventListener('blur', ()=> {
 
 
 botaoAcessar.addEventListener('click',(event) => {
-		
 	if (validacaoTelaDeLogin()) {
 		event.preventDefault();
 		
@@ -141,7 +140,6 @@ function loginSucesso(jsonRecebido) {
 	sessionStorage.setItem('jwt', JSON.stringify(jsonRecebido))
 	window.location.href = "tarefas.html"
 	document.getElementById('form-login').reset();
-
 }
 
 function loginErro(statusRecebido) {

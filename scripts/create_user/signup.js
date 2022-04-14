@@ -20,9 +20,7 @@ let campoSobrenomeNormalizado;
 let campoEmailNormalizado;
 let campoSenhaNormalizado;
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  
+function validacaoDadosInput() {
   if(inputNome.value === ''){
     errorListUl.innerHTML += '<li>Campo <b>nome</b> não preenchido</li>';
   }else{
@@ -61,7 +59,7 @@ form.addEventListener('submit', (event) => {
     event.preventDefault()
     errorList.hidden = '';
   }
-  
+
   if(inputNome.value && inputSobrenome.value && inputEmail.value && inputSenha.value && inputRepetirSenha != '' ) {
     //spinner loading
     btnSubmite.classList.add('button--loading')
@@ -69,7 +67,12 @@ form.addEventListener('submit', (event) => {
     // btnText.style.display = "block";
     errorListUl.innerHTML = '';
   }
+}
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
 
+  validacaoDadosInput()
+  
   // Consumindo a API
   let dadosUsuario = {
     firstName: campoNomeNormalizado,
