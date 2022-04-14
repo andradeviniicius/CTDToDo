@@ -7,15 +7,13 @@ if(userToken===null){
 const userName = document.querySelector('.user-name');
 const novaTarefa = document.getElementById('nova-tarefa');
 const btnSubmit = document.getElementById('btn-submit');
-const taskList = document.getElementById('skeleton')
+const taskList = document.querySelector('.skeleton')
 const formTask = document.querySelector('.nova-tarefa')
 
 let tarefasUser = {
   description: "", 
   completed: ""
 }
-
-
 
 //Busca dados do usuario
 function getUserInfo() {
@@ -86,6 +84,7 @@ function createTaskUser() {
   })
 }
 
+
 //Função que renderiza as tasks
 function renderTaskPending(tasks) {
   tasks.forEach(task => {
@@ -96,7 +95,7 @@ function renderTaskPending(tasks) {
       <div class="descricao">
         <p class="nome">${task.description}</p>
         <p class="timestamp"><i class="far fa-calendar-alt"></i>
-        Criada em: ${task.createdAt}
+        Criada em: ${formatDate(task.createdAt)}
         </p>
       </div>
     </li>

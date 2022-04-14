@@ -225,14 +225,14 @@ a {
 }
 
 #skeleton .descricao{
-  background-color: rgb(189, 189, 189);
+  background-color: #fff;
 }
 #skeleton p{
-  background-color: rgb(214, 214, 214);
-  color: rgb(214, 214, 214);
+  background-color: #fff;
+  color: #333;
 }
 #skeleton .not-done{
-  background-color: rgb(189, 189, 189);
+  background-color: #85EA2D;
 }
 
 #skeleton{
