@@ -1,5 +1,9 @@
 const userToken = JSON.parse(sessionStorage.getItem('jwt'))
+if(userToken===null){
+  alert('Pagina indisponivel, faça login corretamente para acessar o conteudo :)')
+  window.location.href = 'index.html'
 
+}
 const userName = document.querySelector('.user-name');
 const novaTarefa = document.getElementById('nova-tarefa');
 const btnSubmit = document.getElementById('btn-submit');
@@ -14,21 +18,26 @@ let tarefasUser = {
 
 
 //Busca dados do usuario
-function getUseUpi() {
+function getUserInfo() {
   fetch('https://ctd-todo-api.herokuapp.com/v1/users/getMe', { 
     method: 'GET',
     headers: {
       'authorization': `${userToken.jwt}`,
-
       'content-type': 'application/json'
     }
   })
   .then(response => {
+    if(response.status == 401){
+      alert('Pagina indisponivel, faça login corretamente para acessar o conteudo :)')
+      window.location.href = 'index.html'
+    }
     return response.json()
   })
   .then(userData => {
-    console.log(userData)
     userName.innerText = `${userData.firstName} ${userData.lastName}`
+  }).catch(res=>{
+    console.log("erro"+res);
+    // esse catch nao está funcionnando :( se puderem ajudar a decifrar ele, seria otimo poder barrar o usuario já no primeiro fetch com o catch mas nao consegui hoje)
   })
 }
 
@@ -104,7 +113,7 @@ btnSubmit.addEventListener('click', (event) => {
 
 //Evento acontece ao carregar a pagina
 window.addEventListener('load', () => {
-  getUseUpi()
+  getUserInfo()
 
   getTaskUser()  
 
