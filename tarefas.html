@@ -23,12 +23,25 @@
 
   <!-- ---------------------- lógica aplicada na page tarefas ----------------------- -->
   <script src="scripts/tasks/tasks.js" defer></script>
+  <script src="scripts/tasks/logout.js" defer></script>
   <script src="scripts/validations/utils.js" defer></script>
 
   <title>To-Do App</title>
 </head>
 
 <body>
+
+
+  <div class="logoutModal">
+    <div class="box">
+      <p>Deseja mesmo sair da sessão?</p>
+      <div class="btnBox">
+        <button>Sim</button>
+        <button>Não</button>
+      </div>
+    </div>
+  </div>
+
   <header>
     <nav>
       <a href="#">Tarefas</a>
