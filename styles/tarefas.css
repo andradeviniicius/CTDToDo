@@ -223,10 +223,21 @@ a {
   color: grey;
   text-decoration: line-through;
 }
+p {
+  animation-name: example;
+  animation-duration: 2.5s;
+}
 
 #skeleton .descricao{
   background-color: #fff;
+  animation-name: example;
+  animation-duration: 3s;
 }
+@keyframes example {
+  from {color: #fff; }
+  to {color: #fff;}
+}
+
 #skeleton p{
   background-color: #fff;
   color: #333;
@@ -236,10 +247,10 @@ a {
 }
 
 #skeleton{
-  animation: trasparencia 1s infinite;
+  animation: trasparencia 1s 3;
 }
 @keyframes trasparencia {
-  0%{ opacity: 0.5;}
+  0%{ opacity: 0.3;}
   100%{ opacity: 0.8;}
 }
 
