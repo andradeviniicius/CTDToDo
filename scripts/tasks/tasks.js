@@ -7,12 +7,18 @@ if(userToken===null){
 const userName = document.querySelector('.user-name');
 const novaTarefa = document.getElementById('nova-tarefa');
 const btnSubmit = document.getElementById('btn-submit');
-const taskList = document.querySelector('.skeleton')
+const taskList = document.querySelector('.tarefas-pendentes')
 const formTask = document.querySelector('.nova-tarefa')
 
 let tarefasUser = {
   description: "", 
   completed: ""
+}
+
+function reloadTasks() {
+  while(taskList.firstChild) {
+    taskList.removeChild(taskList.lastChild)
+  }
 }
 
 //Busca dados do usuario
@@ -53,7 +59,6 @@ function getTaskUser() {
     return response.json()
   })
   .then(result => {
-    console.log(result)
     renderTaskPending(result)
     
   })
@@ -76,11 +81,13 @@ function createTaskUser() {
     body: tarefasUserJson
   })
   .then(response => {
-    console.log(response.status)
     return response.json()
   })
   .then(result => {
     console.log(result)
+    reloadTasks()
+    getTaskUser()
+    
   })
 }
 
@@ -88,26 +95,31 @@ function createTaskUser() {
 //Função que renderiza as tasks
 function renderTaskPending(tasks) {
   tasks.forEach(task => {
-    taskList.innerHTML += 
+    const li = document.createElement('li');
+    li.classList.add('tarefa')
+    li.innerHTML = 
     `
-    <li class="tarefa">
       <div class="not-done" id="${task.id}"></div>
       <div class="descricao">
+        <p>ID= ${task.id}</p>
         <p class="nome">${task.description}</p>
         <p class="timestamp"><i class="far fa-calendar-alt"></i>
         Criada em: ${formatDate(task.createdAt)}
         </p>
       </div>
-    </li>
     `
+    taskList.appendChild(li)
   })
 }
+
+
 
 //Evento do botao que cria uma nova Tarefa
 btnSubmit.addEventListener('click', (event) => {
   event.preventDefault();
   createTaskUser()
   formTask.reset();
+  
 })
 
 //Evento acontece ao carregar a pagina
