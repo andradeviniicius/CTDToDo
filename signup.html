@@ -9,53 +9,62 @@
 
   <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
   <link rel="stylesheet" href="styles/acesso.css">
+  <link rel="stylesheet" href="styles/animations.css">
 
-  <!-- ---------------------- lógica aplicada no registro -------------------- -->
-  <script src="/scripts/utils.js"></script>
-  <script src="/scripts/signup.js"></script>
-
+  
 </head>
-
 <body>
 
   <div class="left">
     <img src="./assets/pessoa-signup.png" alt="">
+    <div class="left-animation hidden"> </div>
   </div>
   <div class="right">
-    <form>
+    <form id="create-conta">
       <div class="form-header">
         <p>To-Do App</p>
       </div>
 
       <label>
         Nome:
-        <input type="text">
+        <input id="input-nome" type="text">
       </label>
       <label>
-        Apelido:
-        <input type="text">
+        Sobrenome:
+        <input id="input-sobrenome" type="text">
       </label>
       <label>
         Email:
-        <input type="text">
+        <input id="input-email" type="text">
       </label>
       <label>
         Senha:
-        <input type="password">
+        <input id="input-senha" type="password">
       </label>
       <label>
         Repetir senha:
-        <input type="password">
+        <input id="input-repetir-senha" type="password">
       </label>
-
-      <button>Criar conta</button>
-
+      <div id="error-list-container" class="erros" hidden>
+        <ul id="error-list" >
+          
+        </ul>
+      </div>
+      <button 
+        id="btn-criar-conta" 
+        class="">
+        Criar conta
+        <span class="button--text">Criando usuário</span>
+      </button>
     </form>
+    
     <div class="ingressar">
       <a href="index.html">Já possui conta? Acesse aqui</a>
     </div>
   </div>
 
+  <!-- ---------------------- lógica aplicada no registro -------------------- -->
+  <script src="./scripts/validations/utils.js"></script>
+  <script src="./scripts/create_user/signup.js"></script>
 </body>
-
 </html>

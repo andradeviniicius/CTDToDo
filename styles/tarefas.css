@@ -223,22 +223,72 @@ a {
   color: grey;
   text-decoration: line-through;
 }
+p {
+  animation-name: example;
+  animation-duration: 2.5s;
+}
 
 #skeleton .descricao{
-  background-color: rgb(189, 189, 189);
+  background-color: #fff;
+  animation-name: example;
+  animation-duration: 3s;
 }
+@keyframes example {
+  from {color: #fff; }
+  to {color: #fff;}
+}
+
 #skeleton p{
-  background-color: rgb(214, 214, 214);
-  color: rgb(214, 214, 214);
+  background-color: #fff;
+  color: #333;
 }
 #skeleton .not-done{
-  background-color: rgb(189, 189, 189);
+  background-color: #85EA2D;
 }
 
 #skeleton{
-  animation: trasparencia 1s infinite;
+  animation: trasparencia 1s 3;
 }
 @keyframes trasparencia {
-  0%{ opacity: 0.5;}
+  0%{ opacity: 0.3;}
   100%{ opacity: 0.8;}
+}
+
+
+.logoutModal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  
+  backdrop-filter: blur(4px);
+}
+
+.logoutModal .box {
+  width: 400px;
+  height: 200px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px ;
+
+  border-radius: 5px;
+  
+  box-shadow: 2px 2px 20px rgb(141, 141, 141);
+  background-color: white;
+}
+.logoutModal .box .btnBox button {
+  box-shadow: 2px 2px 7px rgb(141, 141, 141);
+
+  background-color: rgb(218, 88, 88);
+  padding: 10px 20px;
+  margin: 10px;
+}
+.logoutModal .box .btnBox button:nth-child(2) {
+  background-color: var(--app-grey);
 }

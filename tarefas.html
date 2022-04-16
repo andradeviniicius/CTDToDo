@@ -21,18 +21,34 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+  <!-- ---------------------- lógica aplicada na page tarefas ----------------------- -->
+  <script src="scripts/tasks/tasks.js" defer></script>
+  <script src="scripts/tasks/logout.js" defer></script>
+  <script src="scripts/validations/utils.js" defer></script>
 
   <title>To-Do App</title>
 </head>
 
 <body>
+
+
+  <div class="logoutModal">
+    <div class="box">
+      <p>Deseja mesmo sair da sessão?</p>
+      <div class="btnBox">
+        <button>Sim</button>
+        <button>Não</button>
+      </div>
+    </div>
+  </div>
+
   <header>
     <nav>
       <a href="#">Tarefas</a>
     </nav>
 
     <div class="user-info">
-      <p>Nome usuário</p>
+      <p class="user-name">Nome usuário</p>
       <div class="user-image"></div>
       <p id="closeApp">Finalizar sessão</i>
       </p>
@@ -42,45 +58,29 @@
 
   <form class="nova-tarefa">
     <div class="not-done "></div>
-    <input id="novaTarea" type="text" placeholder="Nova tarefa">
-    <button type="submit">
+    <input id="nova-tarefa" type="text" placeholder="Nova tarefa">
+    <button id="btn-submit"type="submit">
       <img src="./assets/plus.png" alt="Adicionar uma nova tarefa">
     </button>
   </form>
 
 
   <ul class="tarefas-pendentes">
-    <div id="skeleton">
-      <li class="tarefa">
+    <div id="skeleton" class="skeleton">
+    <div  class="skeleton">
+      <!-- <li class="tarefa">
         <div class="not-done"></div>
         <div class="descricao">
           <p class="nome">Nova tarefa</p>
           <p class="timestamp">Criada em: 15/07/21</p>
         </div>
-      </li>
-      <li class="tarefa">
-        <div class="not-done"></div>
-        <div class="descricao">
-          <p class="nome">Nova tarefa</p>
-          <p class="timestamp">Criada em: 15/07/21</p>
-        </div>
-      </li>
-      <li class="tarefa">
-        <div class="not-done"></div>
-        <div class="descricao">
-          <p class="nome">Nova tarefa</p>
-          <p class="timestamp">Criada em: 15/07/21</p>
-        </div>
-      </li>
-
+      </li> -->
     </div>
   </ul>
 
   <h2 class="titulo-terminadas">Tarefas terminadas</h2>
   <ul class="tarefas-terminadas">
-
   </ul>
 
 </body>
-
 </html>
