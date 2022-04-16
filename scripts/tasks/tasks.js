@@ -2,13 +2,14 @@ const userToken = JSON.parse(sessionStorage.getItem('jwt'))
 if(userToken===null){
   alert('Pagina indisponivel, faça login corretamente para acessar o conteudo :)')
   window.location.href = 'index.html'
-
 }
+
 const userName = document.querySelector('.user-name');
 const novaTarefa = document.getElementById('nova-tarefa');
 const btnSubmit = document.getElementById('btn-submit');
 const taskList = document.querySelector('.skeleton')
 const formTask = document.querySelector('.nova-tarefa')
+
 
 let tarefasUser = {
   description: "", 
@@ -53,8 +54,12 @@ function getTaskUser() {
     return response.json()
   })
   .then(result => {
-    console.log(result)
-    renderTaskPending(result)
+    /* console.log(result) */
+    renderTaskPending(result)    
+    
+   /*    for (task in result) {
+        console.log(task)
+      } */
     
   })
 }
@@ -91,7 +96,7 @@ function renderTaskPending(tasks) {
     taskList.innerHTML += 
     `
     <li class="tarefa">
-      <div class="not-done" id="${task.id}"></div>
+      <button class="not-done" id="${task.id}" onclick="concluirTarefa();"></button>
       <div class="descricao">
         <p class="nome">${task.description}</p>
         <p class="timestamp"><i class="far fa-calendar-alt"></i>
@@ -100,7 +105,10 @@ function renderTaskPending(tasks) {
       </div>
     </li>
     `
+  
   })
+
+
 }
 
 //Evento do botao que cria uma nova Tarefa
@@ -110,10 +118,18 @@ btnSubmit.addEventListener('click', (event) => {
   formTask.reset();
 })
 
+//Evento do botao que conclui a tarefa
+function concluirTarefa() {
+
+}
+
+
 //Evento acontece ao carregar a pagina
 window.addEventListener('load', () => {
   getUserInfo()
-
   getTaskUser()  
 
 })
+
+
+
