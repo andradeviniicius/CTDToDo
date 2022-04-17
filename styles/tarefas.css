@@ -111,7 +111,6 @@ a {
 }
 
 /* Lista de tarefas ----------------------------------------------------------- */
-
 .tarefas-pendentes {
   display: flex;
   flex-direction: column;
@@ -119,7 +118,9 @@ a {
   list-style: none;
   margin: 2em 15%;
 }
-
+li.hidden {
+  display: none;
+}
 .tarefa {
   display: flex;
   align-items: center;
@@ -176,7 +177,9 @@ a {
 .tarefa .nome {
   color: rgb(95, 95, 95);
 }
-
+.tarefa .nome.checked {
+  text-decoration: line-through;
+}
 .tarefa .timestamp {
   font-size: .9em;
   color: rgb(134, 134, 134);

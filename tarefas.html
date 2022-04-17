@@ -24,14 +24,13 @@
   <!-- ---------------------- lógica aplicada na page tarefas ----------------------- -->
   <script src="scripts/tasks/tasks.js" defer></script>
   <script src="scripts/tasks/logout.js" defer></script>
+  <script src="scripts/tasks/taskCompleted.js" defer></script>
   <script src="scripts/validations/utils.js" defer></script>
 
   <title>To-Do App</title>
 </head>
 
 <body>
-
-
   <div class="logoutModal">
     <div class="box">
       <p>Deseja mesmo sair da sessão?</p>
@@ -57,7 +56,7 @@
 
 
   <form class="nova-tarefa">
-    <div class="not-done "></div>
+    <div class="not-done"></div>
     <input id="nova-tarefa" type="text" placeholder="Nova tarefa">
     <button id="btn-submit"type="submit">
       <img src="./assets/plus.png" alt="Adicionar uma nova tarefa">
@@ -66,19 +65,11 @@
 
 
   <ul class="tarefas-pendentes">
-    <div  class="skeleton">
-      <!-- <li class="tarefa">
-        <div class="not-done"></div>
-        <div class="descricao">
-          <p class="nome">Nova tarefa</p>
-          <p class="timestamp">Criada em: 15/07/21</p>
-        </div>
-      </li> -->
-    </div>
   </ul>
 
   <h2 class="titulo-terminadas">Tarefas terminadas</h2>
   <ul class="tarefas-terminadas">
+    
   </ul>
 
 </body>
