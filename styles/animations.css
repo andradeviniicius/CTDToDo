@@ -1,63 +1,42 @@
-a {
-    text-decoration: none;
-}
-
-form {
-    position: relative;
-    max-width: 26em;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin: 2em auto;
-    box-shadow: 0 5px 5px lightgrey;
-    padding: 1em 2.5em;
-    box-sizing: border-box;
-    animation-duration: 3s;
-    animation-name: slidein;
-}
-
-.ingressar:hover {
-    border-radius: 4px;
-    width: 45%;
-    background-color: #8e64c546;
-    transition: 2.1s;
+.card, .ingressar {
+	animation-duration: 3s;
+	animation-name: slidein;
 }
 
 @keyframes slidein {
-    from {
-        transform: scale(0.5);
-        opacity: 0%;
-    }
+	from {
+		transform: scale(0.5);
+		opacity: 0%;
+	}
 
-    to {
-        transform: scale(1);
-        opacity: 100%;
-    }
+	to {
+		transform: scale(1);
+		opacity: 100%;
+	}
 }
 
 input:focus {
-    border-color: #8E64C5;
-    background: #8e64c546;
-    transition: 2.1s;
+	border-color: #8E64C5;
+	background: #8e64c546;
+	transition: 2.1s;
 }
 
 #create-conta {
-    animation-name: slideinCreate;
+	animation-name: slideinCreate;
 }
 
 @keyframes slideinCreate {
-    from {
-        margin-bottom: 0%;
-        opacity: 0%;
-    }
+	from {
+		margin-bottom: 0%;
+		opacity: 0%;
+	}
 
-    to {
-        margin-top: 20;
-        opacity: 100%;
-    }
+	to {
+		margin-top: 20;
+		opacity: 100%;
+	}
 }
 
 .descricao{
-    color: #fff;
+	color: #fff;
 }
