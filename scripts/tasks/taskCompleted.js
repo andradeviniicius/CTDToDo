@@ -30,9 +30,7 @@ function renderTaskComleted (event) {
   </div>
   `
   tasksCompleted.appendChild(li)
-
 }
-
 
 taskList.addEventListener('click', renderTaskComleted)
 
