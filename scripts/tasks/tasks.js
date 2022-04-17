@@ -112,8 +112,6 @@ function renderTaskPending(tasks) {
   })
 }
 
-
-
 //Evento do botao que cria uma nova Tarefa
 btnSubmit.addEventListener('click', (event) => {
   event.preventDefault();
@@ -125,7 +123,15 @@ btnSubmit.addEventListener('click', (event) => {
 //Evento acontece ao carregar a pagina
 window.addEventListener('load', () => {
   getUserInfo()
+  
+  renderSkeletons(4, ".skeleton")
 
-  getTaskUser()  
+  setTimeout(() => {
+    getTaskUser()
+    
+    removeSkeleton()
+
+  }, 2000)
+  
 
 })

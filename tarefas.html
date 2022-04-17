@@ -22,6 +22,7 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <!-- ---------------------- lógica aplicada na page tarefas ----------------------- -->
+  <script src="scripts/animations/skeleton.js" defer></script>
   <script src="scripts/tasks/tasks.js" defer></script>
   <script src="scripts/tasks/logout.js" defer></script>
   <script src="scripts/tasks/taskCompleted.js" defer></script>
@@ -64,11 +65,10 @@
   </form>
 
 
-  <div id="skeleton" class="skeleton">
-    <ul class="tarefas-pendentes">
-     
-    </ul>
-  </div>
+  <ul class="tarefas-pendentes">
+    <div id="skeleton" class="skeleton">
+    </div>
+  </ul>
 
   <h2 class="titulo-terminadas">Tarefas terminadas</h2>
   <ul class="tarefas-terminadas">
