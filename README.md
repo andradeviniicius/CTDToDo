@@ -27,7 +27,7 @@ Feito com :heart: por:
 
 [Cristian Fernandes](https://github.com/dnwest) <br>
 [Edimilson Sousa](https://github.com/edimilsonbraz) <br>
-[Lucas Gabriel Johann](https://github.com/) <br>
+[Lucas Gabriel Johann](https://github.com/gabjohann) <br>
 [Thaisa Sicco Maestro](https://github.com/thaisasicco) <br>
 [Vinicius Andrade](https://github.com/andradeviniicius) <br>
 [Yasmin Khalaf](https://github.com/yasmink88)
