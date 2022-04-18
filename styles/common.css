@@ -4,6 +4,9 @@
   --primary: #7898FF;
   --secondary: #8E64C5;
   --app-grey: #F2F2F2;
+  --background: #201b2c;
+  --color-title: #77ffc0;
+  --color-button: #00ff88;
 }
 
 * {
@@ -13,7 +16,7 @@
 }
 
 body {
-  background-color: #F6F6F6;
+  background-color: var(--background);
   min-height: 100vh;
 }
 

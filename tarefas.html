@@ -22,9 +22,10 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <!-- ---------------------- lógica aplicada na page tarefas ----------------------- -->
+  <script src="scripts/animations/skeleton.js" defer></script>
   <script src="scripts/tasks/tasks.js" defer></script>
   <script src="scripts/user/logout.js" defer></script>
- <script src="scripts/validations/utils.js" defer></script>
+  <script src="scripts/validations/utils.js" defer></script>
 
   <title>To-Do App</title>
 </head>
@@ -55,7 +56,7 @@
 
 
   <form class="nova-tarefa">
-  
+    <div class="not-done"></div>
     <input id="nova-tarefa" type="text" placeholder="Nova tarefa">
     <button id="btn-submit"type="submit">
       <img src="./assets/plus.png" alt="Adicionar uma nova tarefa">
@@ -65,8 +66,6 @@
 
   <ul class="tarefas-pendentes">
     <div id="skeleton" class="skeleton">
-    <div  class="skeleton">
-     
     </div>
   </ul>
 
