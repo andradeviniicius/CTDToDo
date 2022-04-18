@@ -89,7 +89,7 @@ function createTaskUser() {
       li.classList.add('tarefa')
       li.innerHTML =
         `
-      <div class="not-done" id="${result.id}"></div>
+      <button class="not-done" id="${result.id}" onclick="concluirTarefa(${result.id});"></button>
       <div class="descricao">
         <p>ID= ${result.id}</p>
         <p class="nome">${result.description}</p>
@@ -109,13 +109,9 @@ function createTaskUser() {
       <div class="descricao">
         <p class="nome">${result.description}</p>
         <div>
-          <button><i id="${result.elementId}" class="fas
+          <button  id="${result.id}" ><iclass="fas fa-undo-alt change"></i></button>
           
-          fa-undo-alt change"></i></button>
-          
-          <button><i id="${result.elementId}" class="far
-          
-          fa-trash-alt"></i></button>
+          <button id="${result.id}" ><i class="far fa-trash-alt"></i></button>
         </div>
       </div>
       `
@@ -135,7 +131,7 @@ function renderTaskPending(tasks) {
       li.classList.add('tarefa')
       li.innerHTML =
         `
-      <div class="not-done" id="${task.id}"></div>
+      <button class="not-done" id="${task.id}" onclick="concluirTarefa(${task.id});"></button>
       <div class="descricao">
         <p>ID= ${task.id}</p>
         <p class="nome">${task.description}</p>
@@ -150,18 +146,14 @@ function renderTaskPending(tasks) {
       const liCompleted = document.createElement('li');
       liCompleted.classList.add('tarefa')
       liCompleted.innerHTML =
-        `
+      `
       <div class="done"></div>
       <div class="descricao">
         <p class="nome">${task.description}</p>
         <div>
-          <button><i id="${task.elementId}" class="fas
+          <button  id="${task.id}" ><i class="fas fa-undo-alt change"></i></button>
           
-          fa-undo-alt change"></i></button>
-          
-          <button><i id="${task.elementId}" class="far
-          
-          fa-trash-alt"></i></button>
+          <button id="${task.id}" onclick="excluirTarefa(${task.id})"><i class="far fa-trash-alt"></i></button>
         </div>
       </div>
       `
@@ -185,10 +177,39 @@ btnSubmit.addEventListener('click', (event) => {
 })
 
 //Evento do botao que conclui a tarefa
-function concluirTarefa() {
-
+function concluirTarefa(tarefaId) {
+  const url = `https://ctd-todo-api.herokuapp.com/v1/tasks/${tarefaId}`
+  fetch(url, {
+    method: 'PUT',
+    headers: {
+      'authorization': `${userToken.jwt}`,
+      'content-tpye': 'application/json'
+    },
+    body: {
+      "completed": true,
+    }
+   
+  }).then(response => response.json())
+  .then(json => console.log(json))
 }
 
+//Evento de excluir tarefa
+function excluirTarefa(tarefaId) {
+  const url = `https://ctd-todo-api.herokuapp.com/v1/tasks/${tarefaId}`
+  fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'authorization': `${userToken.jwt}`
+    }
+   
+  }).then(response => {
+    return response.json()
+  })
+  .then(result => {
+    alert(result)
+    location.reload()
+  })
+}
 
 //Evento acontece ao carregar a pagina
 window.addEventListener('load', () => {

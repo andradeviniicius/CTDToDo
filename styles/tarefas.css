@@ -141,9 +141,9 @@ li.hidden {
   position: absolute;
   bottom: 100%;
   left: calc(0.8em);
-  display: block;
-  height: 3.8em;
-  width: 2px;
+    display: block;
+    height: 3.8em;
+    width: 2px;
   background-color: var(--secondary);
 }
 
