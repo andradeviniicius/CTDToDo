@@ -18,11 +18,6 @@ let tarefasUser = {
   completed: "",
 };
 
-/* function reloadTasks() {
-  while (taskList.firstChild) {
-    taskList.removeChild(taskList.lastChild)
-  }
-} */
 
 //Busca dados do usuario
 function getUserInfo() {
@@ -225,7 +220,17 @@ function excluirTarefa(tarefaId) {
 }
 
 //Evento acontece ao carregar a pagina
-window.addEventListener("load", () => {
-  getUserInfo();
-  getTaskUser();
-});
+window.addEventListener('load', () => {
+  getUserInfo()
+  
+  renderSkeletons(4, ".skeleton")
+
+  setTimeout(() => {
+    getTaskUser()
+    
+    removeSkeleton()
+
+  }, 2000)
+  
+
+})
