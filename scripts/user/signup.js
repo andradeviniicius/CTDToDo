@@ -96,6 +96,7 @@ form.addEventListener('submit', (event) => {
   })
   .then(response => {
     if(response.status == 201) {
+      ocultarSpinner()
       return response.json()
     }
     //Se status diferente, cai no catch
@@ -106,11 +107,12 @@ form.addEventListener('submit', (event) => {
   })
   .catch((error) => {
     if(error.status == 400) {
+      ocultarSpinner()
       console.log(error)
       errorList.hidden = '';
-      errorListUl.innerHTML += '<li>Erro: <b>Usuário</b> já cadastrado</li>';
-      errorListUl.innerHTML += '<li>Erro: Alguns <b>dados</b> incompletos</li>';
+      errorListUl.innerHTML += '<li>Erro: <b>Usuário já existe</b> OU <b>dados incompleto!</b></li>';
     }else{
+      ocultarSpinner()
       cadastroErro(error)
     }
   })
