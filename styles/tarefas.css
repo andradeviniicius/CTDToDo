@@ -1,17 +1,17 @@
 @import url('./common.css');
 header {
   display: flex;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  box-shadow: 0px 3px 5px lightgrey;
+  background: #2D264A;
+  border-bottom: 1px solid lightgrey;
   padding: 0 3em;
-  margin-bottom: 2em;
+  margin-bottom: 4em;
 }
 
 a {
   display: block;
   width: fit-content;
-  padding: .7em 1em;
-  border-bottom: .2em solid white;
+  padding: 1em 0.1em;
+  border-bottom: .2em solid var(--color-button);
   text-decoration: none;
   color: white
 }
@@ -37,12 +37,12 @@ a {
 }
 
 #closeApp{
-  margin-left: 15px;
+  margin-left: 1rem;
   font-size: .7em;
   background-color: rgb(218, 88, 88);
   color: white;
   border-radius: 50vh;
-  padding: 5px 10px;
+  padding: 0.313rem 0.625rem;
   cursor: pointer;
 }
 
@@ -111,7 +111,6 @@ a {
 }
 
 /* Lista de tarefas ----------------------------------------------------------- */
-
 .tarefas-pendentes {
   display: flex;
   flex-direction: column;
@@ -119,7 +118,9 @@ a {
   list-style: none;
   margin: 2em 15%;
 }
-
+li.hidden {
+  display: none;
+}
 .tarefa {
   display: flex;
   align-items: center;
@@ -148,7 +149,7 @@ a {
   left: calc(.75em - 1px);
   display: block;
   height: 3em;
-  width: 2px;
+  width: 0.125rem;
   background-color: var(--secondary);
 }
 
@@ -159,7 +160,7 @@ a {
   left: calc(.75em - 1px);
   display: block;
   height: 4.5em;
-  width: 2px;
+  width: 0.125rem;
   background-color: var(--secondary);
 }
 
@@ -168,7 +169,7 @@ a {
   align-items: center;
   justify-content: space-between;
   flex: 1;
-  background-color: white;
+  background-color: white ;
   padding: 1em 2em;
   box-shadow: 2px 2px 5px lightgrey;
 }
@@ -176,7 +177,9 @@ a {
 .tarefa .nome {
   color: rgb(95, 95, 95);
 }
-
+.tarefa .nome.checked {
+  text-decoration: line-through;
+}
 .tarefa .timestamp {
   font-size: .9em;
   color: rgb(134, 134, 134);
@@ -189,10 +192,10 @@ a {
   width: 8em;
   text-align: center;
   padding: .5em 1em;
-  background-color: white;
+  background-color: var(--color-title);
   border-radius: .2em;
-  box-shadow: 3px 3px 5px lightgrey;
-  color: rgb(170, 170, 170);
+  box-shadow: 1px 1px 5px lightgrey;
+  color: #2b134b;
   font-weight: 400;
   font-size: 1.1em;
   margin-left: calc(15% - 4em);
@@ -212,7 +215,7 @@ a {
   background-color: rgb(228, 228, 228);
 }
 .tarefas-terminadas button{
-  margin-left: 10px;
+  margin-left: 0.625rem;
 }
 
 .tarefas-terminadas .tarefa .descricao {
@@ -224,21 +227,91 @@ a {
   text-decoration: line-through;
 }
 
-#skeleton .descricao{
-  background-color: rgb(189, 189, 189);
-}
-#skeleton p{
-  background-color: rgb(214, 214, 214);
-  color: rgb(214, 214, 214);
-}
-#skeleton .not-done{
-  background-color: rgb(189, 189, 189);
+
+/*=====MODAL-LOGOUT=====*/
+.logoutModal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  
+  backdrop-filter: blur(4px);
 }
 
-#skeleton{
-  animation: trasparencia 1s infinite;
+.logoutModal .box {
+  width: 25rem;
+  height: 12.5rem;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.625rem ;
+
+  border-radius: 5px;
+  
+  box-shadow: 2px 2px 20px rgb(141, 141, 141);
+  background-color: white;
 }
-@keyframes trasparencia {
-  0%{ opacity: 0.5;}
-  100%{ opacity: 0.8;}
+.logoutModal .box .btnBox button {
+  box-shadow: 2px 2px 7px rgb(141, 141, 141);
+
+  background-color: rgb(218, 88, 88);
+  padding: 0.625rem 1.25rem;
+  margin: 0.625rem;
 }
+.logoutModal .box .btnBox button:nth-child(2) {
+  background-color: var(--app-grey);
+}
+
+
+/* ===== SKELETON ======= */
+.skeleton-conteiner {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4em;
+ }
+  
+ .skeleton-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  padding: 1em 2em;
+  box-shadow: 2px 2px 5px lightgrey;
+  animation: loadingContainerAnimation 2s linear infinite;
+ }
+  
+ .skeleton-text {
+  animation: loadingTextAnimation 2s linear infinite;
+  width: 9.4rem;
+  display: block;
+  padding: 0.7rem;
+ }
+  
+ @keyframes loadingContainerAnimation {
+  0% {
+    background: white;
+  }
+  50% {
+    background: rgb(182, 177, 177);
+  }
+  100% {
+    background: white;
+  }
+ }
+  
+ @keyframes loadingTextAnimation {
+  0% {
+    background: white;
+  }
+  50% {
+    background: rgb(128, 123, 123);
+  }
+  100% {
+    background: white;
+  }
+ }
