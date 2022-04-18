@@ -60,17 +60,12 @@ function validacaoDadosInput() {
     errorList.hidden = '';
   }
 
-  if(inputNome.value && inputSobrenome.value && inputEmail.value && inputSenha.value && inputRepetirSenha != '' ) {
-    //spinner loading
-    btnSubmite.classList.add('button--loading')
-    btnSubmite.innerText = 'Criando usuário';
-    // btnText.style.display = "block";
-    errorListUl.innerHTML = '';
-  }
+
 }
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-
+  mostrarSpinner()
   validacaoDadosInput()
   
   // Consumindo a API
