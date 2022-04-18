@@ -13,7 +13,7 @@ form {
     box-shadow: 0 5px 5px lightgrey;
     padding: 1em 2.5em;
     box-sizing: border-box;
-    animation-duration: 3s;
+    animation-duration: 1s;
     animation-name: slidein;
 }
 
@@ -21,7 +21,7 @@ form {
     border-radius: 4px;
     width: 45%;
     background-color: #8e64c546;
-    transition: 2.1s;
+    transition: 1.5s;
 }
 
 @keyframes slidein {
@@ -39,7 +39,7 @@ form {
 input:focus {
     border-color: #8E64C5;
     background: #8e64c546;
-    transition: 2.1s;
+    transition: 1.5s;
 }
 
 #create-conta {

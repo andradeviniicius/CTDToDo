@@ -99,17 +99,6 @@ a {
   width: 100%;
 }
 
-.not-done {
-  width: 2em;
-  height: 2em;
-  background-color: var(--app-grey);
-  margin-right: 1em;
-  border-radius: 50%;
-  cursor: pointer;
-  text-align: center;
-  color: grey;
-}
-
 /* Lista de tarefas ----------------------------------------------------------- */
 .tarefas-pendentes {
   display: flex;
@@ -129,31 +118,36 @@ li.hidden {
 
 .tarefa .not-done {
   position: relative;
-  height: 1.5em;
-  width: 1.5em;
-  background-color: white;
   box-shadow: 2px 2px 5px lightgrey;
   border: 2px solid var(--secondary);
   z-index: 2;
   transition: background-color 200ms linear;
+  width: 2em;
+  height: 2em;
+  background-color: var(--app-grey);
+  margin-right: 1em;
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+  color: grey;
 }
 
 .tarefa .not-done:hover {
   background-color: var(--secondary);
 }
 
-.tarefa:first-child .not-done::before {
+.tarefa .not-done::before {
   content: '';
   position: absolute;
   bottom: 100%;
-  left: calc(.75em - 1px);
-  display: block;
-  height: 3em;
-  width: 2px;
+  left: calc(0.8em);
+    display: block;
+    height: 3.8em;
+    width: 2px;
   background-color: var(--secondary);
 }
 
-.tarefa:not(:last-child) .not-done::after {
+/* .tarefa:not(:last-child) .not-done::after {
   content: '';
   position: absolute;
   top: 100%;
@@ -162,7 +156,7 @@ li.hidden {
   height: 4.5em;
   width: 2px;
   background-color: var(--secondary);
-}
+} */
 
 .tarefa .descricao {
   display: flex;
@@ -228,13 +222,13 @@ li.hidden {
 }
 p {
   animation-name: example;
-  animation-duration: 2.5s;
+  animation-duration: 1s;
 }
 
 #skeleton .descricao{
   background-color: #fff;
   animation-name: example;
-  animation-duration: 3s;
+  animation-duration: 1.5s;
 }
 @keyframes example {
   from {color: #fff; }
