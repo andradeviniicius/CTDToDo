@@ -1,14 +1,33 @@
-# CTDToDo
-Repositorio criado para realizacao do Checkpoint 2 da matéria de FrontEnd 2
+# ToDo App
 
-### Grupo 2
+Repositorio criado para realização do Checkpoint 2 da matéria de FrontEnd 2 do curso Certified Tech Developer - Digital House <br><br>
 
-#### Membros 
+O objetivo foi criar uma aplicação de gerenciamento de tarefas, onde podemos realizar as seguintes atividades:
 
-<p>Edimilson Sousa<br>
-Cristian Fernandes<br>
-Vinicius Andrade<br>
-Yasmin Khalaf<br>
-Lucas Gabriel Johann<br>
-Thaisa Sicco
-</p>
+* Registro de usuários
+* Login do usuário
+* Criar tarefas novas
+* Visualizar a data de criação de uma tarefa
+* Marcar uma tarefa como terminada
+* Ver tarefas terminadas
+* Ver tarefas pendentes
+
+<br>
+
+
+
+## Stacks usadas <br>
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="50" height="50"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="50" height="50"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="50" height="50"/>
+
+<br>
+<br>
+
+Feito com :heart: por:
+
+[Cristian Fernandes](https://github.com/dnwest) <br>
+[Edimilson Sousa](https://github.com/edimilsonbraz) <br>
+[Lucas Gabriel Johann](https://github.com/) <br>
+[Thaisa Sicco Maestro](https://github.com/thaisasicco) <br>
+[Vinicius Andrade](https://github.com/andradeviniicius) <br>
+[Yasmin Khalaf](https://github.com/yasmink88)
