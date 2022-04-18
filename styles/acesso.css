@@ -57,6 +57,7 @@ label {
 }
 
 button {
+  position: relative;
   width: 100%;
   padding: 12px 0px;
   background-color: var(--color-button);
@@ -88,39 +89,6 @@ button:disabled {
 .button--text {
   display: none;
 }
-.button--loading::after {
-  content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  top: 5px;
-  left: 5px;
-  right: 0;
-  bottom: 0;
-  /* margin: auto; */
-  border: 4px solid transparent;
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: button-loading-spinner 1s linear infinite;
-}
-@keyframes button-loading-spinner {
-  0% {
-    transform: rotate(0deg);
-    border-top-color: #1DA760;
-    transition: all 0.5s;
-  }
-  50% {
-    transform: rotate(180deg);
-    border-top-color: #DE3E35;
-    transition: all 0.5s;
-  }
-  100% {
-    transform: rotate(360deg);
-    border-top-color: #fff;
-    transition: all 0.5s;
-  }
-}
-
 
 .form-header {
   color: grey;

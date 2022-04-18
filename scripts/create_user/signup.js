@@ -60,16 +60,12 @@ function validacaoDadosInput() {
     errorList.hidden = '';
   }
 
-  if(inputNome.value && inputSobrenome.value && inputEmail.value && inputSenha.value && inputRepetirSenha != '' ) {
-    //spinner loading
-    btnSubmite.classList.add('button--loading')
-    btnSubmite.innerText = 'Criando usuário';
-    // btnText.style.display = "block";
-    errorListUl.innerHTML = '';
-  }
 }
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
+
+  mostrarSpinner()
 
   validacaoDadosInput()
   
@@ -96,6 +92,7 @@ form.addEventListener('submit', (event) => {
   })
   .then(response => {
     if(response.status == 201) {
+      ocultarSpinner()
       return response.json()
     }
     //Se status diferente, cai no catch
@@ -106,11 +103,12 @@ form.addEventListener('submit', (event) => {
   })
   .catch((error) => {
     if(error.status == 400) {
+      ocultarSpinner()
       console.log(error)
       errorList.hidden = '';
-      errorListUl.innerHTML += '<li>Erro: <b>Usuário</b> já cadastrado</li>';
-      errorListUl.innerHTML += '<li>Erro: Alguns <b>dados</b> incompletos</li>';
+      errorListUl.innerHTML += '<li>Erro: <b>Usuário já existe</b> OU <b>dados incompleto!</b></li>';
     }else{
+      ocultarSpinner()
       cadastroErro(error)
     }
   })
@@ -135,3 +133,4 @@ function cadastroErro(statusRecebido) {
   console.log("Erro ao tentar cadastrar usuário")
   console.log(statusRecebido)
 }
+
