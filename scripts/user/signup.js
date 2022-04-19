@@ -91,7 +91,11 @@ form.addEventListener('submit', (event) => {
   })
   .then(response => {
     if(response.status == 201) {
-      ocultarSpinner()
+      errorList.hidden = '';
+      setTimeout(() => {
+        
+        ocultarSpinner()
+      }, 2000)
       return response.json()
     }
     //Se status diferente, cai no catch
@@ -99,10 +103,15 @@ form.addEventListener('submit', (event) => {
   })
   .then(response => {
     cadastroSucesso(response)
+    document.getElementById('create-conta').reset();
+
   })
   .catch((error) => {
     if(error.status == 400) {
-      ocultarSpinner()
+      setTimeout(() => {
+
+        ocultarSpinner()
+      }, 2000)
       console.log(error)
       errorList.hidden = '';
       errorListUl.innerHTML += '<li>Erro: <b>Usuário já existe</b> OU <b>dados incompleto!</b></li>';
@@ -120,15 +129,23 @@ function cadastroSucesso(jsonRecebido) {
   console.log(jsonRecebido)
   // alert('Usuário cadastrado com sucesso')
   setTimeout(function(){
-    btnSubmite.innerText += ` ✅`;
+    mensagemDeSucesso()
 
   }, 2000)
-  setTimeout(function(){
-    location.href = "index.html"
-  }, 4000)
+  
 }
 //Cria uma function caso tenha erro no cadastro
 function cadastroErro(statusRecebido) {
   console.log("Erro ao tentar cadastrar usuário")
   console.log(statusRecebido)
+}
+
+
+//function de mensagens
+function mensagemDeSucesso() {
+  Swal.fire(
+    "Usuário cadastrado com sucesso", //titulo
+    'click em ok para continuar', //Mensagem
+    'success' // Tipo de ícone
+  )
 }

@@ -85,6 +85,8 @@ campoSenhaLogin.addEventListener('blur', ()=> {
 botaoAcessar.addEventListener('click',(event) => {
 	if (validacaoTelaDeLogin()) {
 		event.preventDefault();
+
+		mostrarSpinner()
 		
 		campoEmailLoginNormalizado = retiraEspacosDeUmValor(campoEmailLogin.value);
 		campoSenhaLoginNormalizado = retiraEspacosDeUmValor(campoSenhaLogin.value);
@@ -108,6 +110,10 @@ botaoAcessar.addEventListener('click',(event) => {
 		})
 		.then(response => {
 			if(response.status == 201) {
+				setTimeout(() => {
+        
+					ocultarSpinner()
+				}, 2000)
 				return response.json()
 
 			}
@@ -119,6 +125,7 @@ botaoAcessar.addEventListener('click',(event) => {
 		})
 		.catch((error) => {
 			if(error.status == 404) {
+					ocultarSpinner()
 				mensageErroApi.innerText = "Usuário não existe"
 				mensageErroApi.style.color = "#EE1729EC"
 				setTimeout(() => {
@@ -126,12 +133,17 @@ botaoAcessar.addEventListener('click',(event) => {
 				}, 4000)
 			}else{
 				loginErro(error)
+				ocultarSpinner()
 			}
 		})
 		
 	}else {
 		event.preventDefault(); 
-		alert("Ambos os campos devem ser informados")
+		Swal.fire(
+			"Preencha os dados para logar", //titulo
+			'existem compos vazios!', //Mensagem
+			'warning' // Tipo de ícone
+		)
 	}
 });
 

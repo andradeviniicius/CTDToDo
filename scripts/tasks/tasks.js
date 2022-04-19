@@ -1,9 +1,10 @@
 const userToken = JSON.parse(sessionStorage.getItem("jwt"));
 if (userToken === null) {
-  alert(
-    "Pagina indisponivel, faça login corretamente para acessar o conteudo :)"
-  );
-  window.location.href = "index.html";
+  mensagemDeAlerta()
+  setTimeout(() => {
+    window.location.href = "index.html";
+
+  }, 4000)
 }
 
 const userName = document.querySelector(".user-name");
@@ -30,10 +31,11 @@ function getUserInfo() {
   })
     .then((response) => {
       if (response.status == 401) {
-        alert(
-          "Pagina indisponivel, faça login corretamente para acessar o conteudo :)"
-        );
-        window.location.href = "index.html";
+        mensagemDeAlerta();
+        setTimeout(() => {
+          window.location.href = "index.html";
+
+        }, 4000)
       }
       return response.json();
     })
@@ -42,7 +44,6 @@ function getUserInfo() {
     })
     .catch((res) => {
       console.log("erro" + res);
-      // esse catch nao está funcionnando :( se puderem ajudar a decifrar ele, seria otimo poder barrar o usuario já no primeiro fetch com o catch mas nao consegui hoje)
     });
 }
 
@@ -176,8 +177,8 @@ function concluirTarefa(tarefaId) {
     return response.json()
   }).then(json => {
     
-    alert(`Tarefa "${json.description}" concluida`)
-    location.reload()
+    mensagemDetarefaConcluida(json)
+    // location.reload()
   }) 
 }
 
@@ -194,8 +195,8 @@ function tarefaPendente(tarefaId) {
     return response.json()
   }).then(json => {
     
-    alert(`Tarefa "${json.description}" pendente`)
-    location.reload()
+    mensagemDeTarefaPendente(json)
+    
   }) 
 }
 
@@ -214,9 +215,69 @@ function excluirTarefa(tarefaId) {
       return response.json();
     })
     .then((result) => {
-      alert("Tarefa excluida com sucesso!");
-      location.reload();
+      console.log(result)
+      mensagemDeExcluir();
+      
     });
+}
+
+
+function mensagemDeSucesso() {
+  Swal.fire(
+    "Usuário cadastrado com sucesso", //titulo
+    'click em ok para continuar', //Mensagem
+    'success' // Tipo de ícone
+  )
+  
+}
+
+function mensagemDeAlerta() {
+  Swal.fire(
+    "Pagina indisponivel",
+    'faça login corretamente para acessar o conteudo :)', 
+    'warning' 
+  )
+}
+
+function mensagemDeTarefaPendente(json) {
+  Swal.fire(
+    `Tarefa "${json.description}"`,
+    'está pendente', 
+    'warning' 
+  ).then(result => {
+    if(result.isConfirmed) {
+      location.reload()
+    }
+  })
+}
+
+function mensagemDetarefaConcluida(json) {
+  Swal.fire(
+    `Tarefa "${json.description}" concluida`,
+    'Parabens!', 
+    'success' 
+  ).then((results) => {
+    if(results.isConfirmed) {
+      location.reload()
+    }
+  })
+}
+
+function mensagemDeExcluir() {
+  Swal.fire({
+    title: 'Excluir tarefa',
+    text: 'Deseja realmente excluir esta tarefa ?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sim, confirmar'
+  }).then((result) => {
+    //validamos se o usuário confirmar a ação
+    if(result.isConfirmed) {
+      location.reload();
+    }
+  })
 }
 
 //Evento acontece ao carregar a pagina
@@ -230,7 +291,7 @@ window.addEventListener('load', () => {
     
     removeSkeleton()
 
-  }, 2000)
+  }, 1000)
   
-
 })
+
