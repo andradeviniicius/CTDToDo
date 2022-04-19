@@ -12,9 +12,15 @@ O objetivo foi criar uma aplicação de gerenciamento de tarefas, onde podemos r
 * Ver tarefas terminadas
 * Ver tarefas pendentes
 
+<br><br>
+
+<img src="https://media.discordapp.net/attachments/958849277805858876/966097467840024636/printLogin.JPG?width=1440&height=673" width="800"/>
+
 <br>
 
+### Link para acessar a aplicação -> [ToDo App](https://andradeviniicius.github.io/CTDToDo/) 
 
+<br><br>
 
 ## Stacks usadas <br>
 
