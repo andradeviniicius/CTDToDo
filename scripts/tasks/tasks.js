@@ -1,10 +1,14 @@
 const userToken = JSON.parse(sessionStorage.getItem("jwt"));
 if (userToken === null) {
-  mensagemDeAlerta()
-  setTimeout(() => {
-    window.location.href = "index.html";
-
-  }, 4000)
+  Swal.fire(
+    "Pagina indisponivel",
+    'faça login corretamente para acessar o conteudo :)', 
+    'warning' 
+  ).then((res)=>{
+    if(res.isConfirmed){
+      window.location = 'index.html'
+    }
+  })
 }
 
 const userName = document.querySelector(".user-name");
@@ -229,14 +233,6 @@ function mensagemDeSucesso() {
     'success' // Tipo de ícone
   )
   
-}
-
-function mensagemDeAlerta() {
-  Swal.fire(
-    "Pagina indisponivel",
-    'faça login corretamente para acessar o conteudo :)', 
-    'warning' 
-  )
 }
 
 function mensagemDeTarefaPendente(json) {
