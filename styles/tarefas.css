@@ -1,7 +1,15 @@
 @import url('./common.css');
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 header {
   display: flex;
   background: #2D264A;
+  width: 100%;
   border-bottom: 1px solid lightgrey;
   padding: 0px 3em;
   margin-bottom: 4em;
@@ -25,6 +33,11 @@ a {
 
 .user-info p {
   text-transform: capitalize;
+  text-align: center;
+}
+
+.user-name {
+  text-align: right;
 }
 
 .user-info .user-image {
@@ -182,6 +195,7 @@ li.hidden {
 }
 .tarefa .timestamp {
   font-size: .9em;
+  text-align: right;
   color: rgb(134, 134, 134);
 }
 
@@ -314,4 +328,14 @@ li.hidden {
   100% {
     background: white;
   }
+ }
+
+
+ @media (max-width: 320px) {
+   .nova-tarefa button {
+     margin-left: 0px;
+     margin-right: 0px;
+   }
+   .not-done{
+   }
  }
