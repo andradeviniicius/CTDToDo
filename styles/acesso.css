@@ -41,6 +41,10 @@ input {
 small {
   display: flex;
 }
+.error {
+  color:#EE1729EC;
+  font-size:18px;
+}
 
 input:focus {
   outline: none;
@@ -149,13 +153,4 @@ button:disabled {
 .card form p {
   margin-bottom: 2rem;
 }
-.erros {  
-  width: 100%;
-  padding: 8px;
-  /* background-color: rgba(255, 143, 143, 0.466); */
-}
-.erros #error-list li{
-  color: rgb(191, 45, 45);
-  padding: 4px;
-  list-style: none;
-}
+

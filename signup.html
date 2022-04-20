@@ -29,27 +29,30 @@
         <label>
           Nome:
           <input id="input-nome" type="text">
+          <small id="msg-nome" class="error"></small>
         </label>
         <label>
           Sobrenome:
           <input id="input-sobrenome" type="text">
+          <small id="msg-sobrenome" class="error"></small>
         </label>
         <label>
           Email:
           <input id="input-email" type="text">
+          <small id="msg-email" class="error"></small>
         </label>
         <label>
           Senha:
           <input id="input-senha" type="password">
+          <small id="msg-senha" class="error"></small>
         </label>
         <label>
           Repetir senha:
           <input id="input-repetir-senha" type="password">
+          <small id="msg-repetir-senha" class="error"></small>
         </label>
-        <div id="error-list-container" class="erros" hidden>
-          <ul id="error-list" >
-            
-          </ul>
+        <div class="error-api">
+          <small id="msg-error-api" class="error"></small>
         </div>
         <button 
           id="btn-criar-conta" 

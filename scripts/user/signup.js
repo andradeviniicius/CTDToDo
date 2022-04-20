@@ -3,13 +3,12 @@ function selectId(id) {
 }
 
 const form = selectId('create-conta') 
-const errorList = selectId('error-list-container')
-const errorListUl = selectId('error-list')
 const inputNome = selectId('input-nome')
 const inputSobrenome = selectId('input-sobrenome')
 const inputEmail = selectId('input-email')
 const inputSenha = selectId('input-senha')
 const inputRepetirSenha = selectId('input-repetir-senha')
+const msgErrorApi = selectId('msg-error-api')
 const btnSubmite = selectId('btn-criar-conta')
 const btnText = document.querySelector('.button--text')
 
@@ -20,44 +19,50 @@ let campoSobrenomeNormalizado;
 let campoEmailNormalizado;
 let campoSenhaNormalizado;
 
-function validacaoDadosInput() {
-  if(inputNome.value === ''){
-    errorListUl.innerHTML += '<li>Campo <b>nome</b> não preenchido</li>';
-  }else{
+function validacaoDadosInput(event) {
+  const msgErroNome = document.getElementById('msg-nome')
+  if(inputNome.value != ""){
     campoNomeNormalizado = retiraEspacosDeUmValor(inputNome.value)
     campoNomeNormalizado = converteValorRecebidoParaMinusculo(campoNomeNormalizado)
+    msgErroNome.innerText = "";
+  }else{
+    msgErroNome.innerText = "Preencha o campo nome";
   }
 
-  if(inputSobrenome.value === ''){
-    errorListUl.innerHTML += '<li>Campo <b>sobrenome</b> não preenchido</li>';
-  }
-  else{
+  const msgErroSobrenome = document.getElementById('msg-sobrenome')
+  if(inputSobrenome.value != ""){
     campoSobrenomeNormalizado = retiraEspacosDeUmValor(inputSobrenome.value)
     campoSobrenomeNormalizado = converteValorRecebidoParaMinusculo(campoSobrenomeNormalizado)
+    msgErroSobrenome.innerText = "";
+  }else{
+    msgErroSobrenome.innerText = "Preencha o campo sobrenome";
   }
 
-  if(inputEmail.value != '' && regex.test(inputEmail.value)){
+  const msgErroEmail = document.getElementById('msg-email')
+  if(inputEmail.value != "" && regex.test(inputEmail.value)){
     campoEmailNormalizado = retiraEspacosDeUmValor(inputEmail.value)
     campoEmailNormalizado = converteValorRecebidoParaMinusculo(campoEmailNormalizado)
+    msgErroEmail.innerText = "";
   }else{
-    errorListUl.innerHTML += '<li>Campo <b>email</b> invalido</li>';
+    msgErroEmail.innerText = "Campo email inválido";
   }
 
-  if(inputSenha.value === '' ){
-    errorListUl.innerHTML += '<li>Campo <b>senha</b> não preenchido</li>';
-  }else if(inputSenha.value != inputRepetirSenha.value) {
-    errorListUl.innerHTML += '<li>Repita a <b>senha</b> corretamente</li>';
-    inputRepetirSenha.style.border = `1px solid #EE1729EC`
-  }else{
-    inputRepetirSenha.style.border = ``
+  const msgErroSenha = document.getElementById('msg-senha')
+  const msgErroRepetirSenha = document.getElementById('msg-repetir-senha')
+
+  if(inputSenha.value === ""){
+    msgErroSenha.innerText = "Preencha o campo senha";
+  }else if(inputSenha.value != inputRepetirSenha.value){
+    msgErroRepetirSenha.innerHTML = "Repita a senha corretamente"
+    msgErroSenha.innerText = "";
+    event.preventDefault();
+  }else if(inputSenha.value === inputRepetirSenha.value) {
     campoSenhaNormalizado = retiraEspacosDeUmValor(inputSenha.value)
     campoSenhaNormalizado = converteValorRecebidoParaMinusculo(campoSenhaNormalizado)
-  }
-
-  //Pegando o index das li de erros
-  if(errorListUl.querySelectorAll('li').length > 0) {
-    event.preventDefault()
-    errorList.hidden = '';
+    msgErroSenha.innerText = "";
+    msgErroRepetirSenha.innerText = "";
+  }else{
+    event.preventDefault(); 
   }
 
 
@@ -66,7 +71,8 @@ function validacaoDadosInput() {
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   mostrarSpinner()
-  validacaoDadosInput()
+  validacaoDadosInput(event)
+  
   
   // Consumindo a API
   let dadosUsuario = {
@@ -91,7 +97,6 @@ form.addEventListener('submit', (event) => {
   })
   .then(response => {
     if(response.status == 201) {
-      errorList.hidden = '';
       setTimeout(() => {
         
         ocultarSpinner()
@@ -113,8 +118,7 @@ form.addEventListener('submit', (event) => {
         ocultarSpinner()
       }, 2000)
       console.log(error)
-      errorList.hidden = '';
-      errorListUl.innerHTML += '<li>Erro: <b>Usuário já existe</b> OU <b>dados incompleto!</b></li>';
+      
     }else{
       ocultarSpinner()
       cadastroErro(error)
