@@ -1,7 +1,10 @@
 @import url('./common.css');
 
 body{
-  display: flex;
+  display: grid;
+  grid-template-areas: 
+  "left right"
+  ;
 }
 
 h1 {
@@ -102,7 +105,7 @@ button:disabled {
   text-align: center;
 }
 .left{
-  width: 50%;  
+  grid-area: left;
   background-color: var(background);
   text-align: center;
   display: flex;
@@ -120,20 +123,22 @@ button:disabled {
 }
 
 .right{
-  width: 50vw;
-  height: 100vh;
+  grid-area: right;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 60%;
   background-color: #2f2841;
-  padding: 30px 0px;
+  padding: 30px 30px;
   border-radius: 20px;
   box-shadow: 0px 10px 40px #00000056;
-  margin-bottom: 1rem;
+  margin-bottom: .1rem;
 }
 .card form {
   width: 100%;
@@ -153,4 +158,63 @@ button:disabled {
 .card form p {
   margin-bottom: 2rem;
 }
+.erros {  
+  width: 100%;
+  padding: 8px;
+  /* background-color: rgba(255, 143, 143, 0.466); */
+}
+.erros #error-list li{
+  color: rgb(191, 45, 45);
+  padding: 4px;
+  list-style: none;
+}
 
+.mobileLoginBtn {
+  display: none;
+	background-color: #00ff88;
+	border-radius:28px;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	padding:16px 20px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.mobileLoginBtn:hover {
+	background-color:#00c468;
+}
+
+
+
+
+/* Mobile */
+@media (max-width: 425px) {
+  .right {
+    display: none;
+  }
+  .leftSignup {
+    display: none;
+  }
+  .rightSignup {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .rightSignup .card {
+    animation: none;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    transform: scale(.75);
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .mobileLoginBtn {
+    display: inline-block;
+  }
+}
